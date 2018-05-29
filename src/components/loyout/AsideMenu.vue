@@ -5,8 +5,8 @@
       <span class="site-name">小胖子</span>
     </div>
     <el-menu
-      :default-openeds="['1','2', '3']"
       style="border: none"
+      :default-active="$route.path"
     >
       <template v-for="item in asideMenuConfig">
         <router-link v-if="!item.children" :to="item.path" :key="item.name">
@@ -40,17 +40,17 @@ export default {
   data: function () {
     return {
       asideMenuConfig: [{
-        path: '/table',
+        path: '/voucher',
         name: '凭证管理',
         icon: 'el-icon-menu',
         children: [
           {
-            path: '/basic',
-            name: '分析页'
+            path: '/list',
+            name: '凭证清单'
           },
           {
-            path: '/monitor',
-            name: '监控页'
+            path: '/template',
+            name: '凭证模板'
           },
           {
             path: '/workplace',

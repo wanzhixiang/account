@@ -25,7 +25,7 @@
     <!--table展示区 end-->
     <!--新增科目弹出框-->
     <subject-dialog ref="SubjectDialog" :data="form">
-      <div slot="title">Intel Core i7</div>
+      <span slot="title"></span>
     </subject-dialog>
   </div>
 </template>
@@ -51,8 +51,14 @@ export default {
       table: {
         columns: [
           {
+            name: 'id',
+            alias: 'id',
+            type: 'hidden'
+          },
+          {
             name: '编码',
-            alias: 'subjectNum'
+            alias: 'subjectNum',
+            type: 'text'
           },
           {
             name: '名称',
@@ -69,13 +75,19 @@ export default {
           {
             name: '状态',
             alias: 'subjectNum'
+          },
+          {
+            name: '创建日期',
+            alias: 'createDate',
+            type: 'date'
           }
         ],
         data: [
           {
             subjectNum: '1001',
             subjectName: '钱',
-            subjectType: '资产'
+            subjectType: '资产',
+            createDate: ''
           }, {
             subjectNum: '1001',
             subjectName: '钱1',
@@ -137,7 +149,8 @@ export default {
     },
     // 新增科目
     addSubject: function () {
-      this.dialogFormVisible = true
+      this.$refs.SubjectDialog.$data.dialogFormVisible = true
+      this.$refs.SubjectDialog.$data.title = '新增科目'
     },
     // 删除科目
     delSubject: function () {
@@ -150,7 +163,7 @@ export default {
           type: 'error'
         })
       } else {
-        this.$confirm('此操作将删除该文件, 是否继续?', '提示', {
+        this.$confirm('此操作将删除该' + multipleSelection.length + '条数据, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'

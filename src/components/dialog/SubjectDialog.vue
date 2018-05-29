@@ -1,8 +1,8 @@
 <template>
-  <el-dialog  slot="title" :visible.sync="dialogFormVisible"  :center="true" width="20%">
+  <el-dialog :title="title" :visible.sync="dialogFormVisible"  :center="true" width="20%" >
     <el-form :model="data">
+      <el-input v-model="data.id" type="hidden" auto-complete="off"></el-input>
       <el-form-item label="科目编码" :label-width="formLabelWidth">
-        <el-input v-model="data.id" type="hidden" auto-complete="off"></el-input>
         <el-input v-model="data.subjectNum" auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item label="科目名称" :label-width="formLabelWidth">
@@ -23,8 +23,8 @@
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="dialogFormVisible = false">取 消</el-button>
-      <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+      <el-button @click="$emit('update:show', false)">取 消</el-button>
+      <el-button type="primary" @click="$emit('update:show', false)">确 定</el-button>
     </div>
   </el-dialog>
 </template>
@@ -44,7 +44,8 @@ export default {
   },
   data () {
     return {
-      dialogFormVisible: true,
+      title: '',
+      dialogFormVisible: false,
       formLabelWidth: '80px'
     }
   }

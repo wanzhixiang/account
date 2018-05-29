@@ -11,7 +11,7 @@
       width="55">
     </el-table-column>
     <template v-for="item in table.columns">
-      <el-table-column
+      <el-table-column v-if="item.type!='hidden'"
         :label="item.name"
         :prop="item.alias"
        >
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'basicTable',
+  name: 'BasicTable',
   props: {
     table: {}
   },
