@@ -1,30 +1,41 @@
 <template>
   <div>
     <el-table
-      :data="tableData6"
-      :span-method="objectSpanMethod"
+      :data="voucherTableData"
       border
+      :span-method="objectSpanMethod"
       style="width: 100%; margin-top: 20px">
       <el-table-column
-        prop="id"
-        label="ID"
-        width="180">
+        type="selection"
+        width="55">
       </el-table-column>
       <el-table-column
-        prop="name"
-        label="姓名">
+        prop="createDate"
+        label="日期">
       </el-table-column>
       <el-table-column
-        prop="amount1"
-        label="数值 1（元）">
+        prop="voucherNum"
+        label="凭证字号">
       </el-table-column>
       <el-table-column
-        prop="amount2"
-        label="数值 2（元）">
+        label="摘要">
       </el-table-column>
       <el-table-column
-        prop="amount3"
-        label="数值 3（元）">
+        label="科目">
+      </el-table-column>
+      <el-table-column
+        label="借方金额">
+      </el-table-column>
+      <el-table-column
+        label="贷方金额">
+      </el-table-column>
+      <el-table-column
+        prop="createUser"
+        label="制单人">
+      </el-table-column>
+      <el-table-column
+        prop="auditor"
+        label="审核人">
       </el-table-column>
     </el-table>
   </div>
@@ -35,56 +46,40 @@ export default {
   name: 'VoucherTable',
   data () {
     return {
-      tableData6: [{
-        id: '12987122',
-        name: '王小虎',
-        amount1: '234',
-        amount2: '3.2',
-        amount3: 10
-      }, {
-        id: '12987122',
-        name: '王小虎',
-        amount1: '165',
-        amount2: '4.43',
-        amount3: 12
-      }, {
-        id: '12987124',
-        name: '王小虎',
-        amount1: '324',
-        amount2: '1.9',
-        amount3: 9
-      }, {
-        id: '12987124',
-        name: '王小虎',
-        amount1: '621',
-        amount2: '2.2',
-        amount3: 17
-      }, {
-        id: '12987126',
-        name: '王小虎',
-        amount1: '539',
-        amount2: '4.1',
-        amount3: 15
-      }]
+      voucherTableData: []
     }
   },
+  mounted: function () {
+    this.buildData()
+  },
   methods: {
-
     objectSpanMethod ({ row, column, rowIndex, columnIndex }) {
-      if (columnIndex === 0) {
-        if (rowIndex % 2 === 0) {
-          return {
-            rowspan: 2,
-            colspan: 1
-          }
-        } else {
-          return {
-            rowspan: 0,
-            colspan: 0
-          }
+      if (columnIndex === 0 || columnIndex === 1 || columnIndex === 2 || columnIndex === 4 || columnIndex === 5) {
+        return {
+          rowspan: row.details.length,
+          colspan: 1
         }
       }
+    },
+    buildData () {
+      // 将tableData6构建成需要的数据
+      this.$ajax.get('/static/api/voucherTable.json')
+        .then(function (response) {
+          const result = response.data
+          // 解析result
+          for (let i = 0; i < result.length; i++) {
+            // 写代码
+          }
+        })
+        .catch(function (response) {
+          console.log(response)
+        })
     }
   }
 }
 </script>
+<style>
+  .hidden{
+    display: none;width: 0;
+  }
+</style>

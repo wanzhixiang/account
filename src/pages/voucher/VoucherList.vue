@@ -29,21 +29,7 @@
         <el-button type="danger" size="small" icon="el-icon-delete">删除</el-button>
       </el-row>
       <!--操作按钮区 end-->
-      <!--<voucher-table></voucher-table>-->
-      <el-row>
-        <el-col :span="6" v-for="(o) in 4" :key="o">
-          <el-card :body-style="{ padding: '0px' }">
-            <img src="" class="image">
-            <div style="padding: 14px;">
-              <span>好吃的汉堡</span>
-              <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
-                <el-button type="text" class="button">操作按钮</el-button>
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
+      <voucher-table ref="VoucherTable"></voucher-table>
     </div>
 </template>
 
@@ -70,7 +56,7 @@ export default {
     },
     // 查询数据
     searchVoucher: function () {
-
+      console.log(this.$refs.VoucherTable.$data.multipleSelection)
     }
   }
 }

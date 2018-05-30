@@ -51,11 +51,6 @@ export default {
       table: {
         columns: [
           {
-            name: 'id',
-            alias: 'id',
-            type: 'hidden'
-          },
-          {
             name: '编码',
             alias: 'subjectNum',
             type: 'text'

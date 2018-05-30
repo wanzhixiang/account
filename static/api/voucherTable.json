@@ -1,0 +1,101 @@
+[
+  {
+  "id": "5",
+  "createDate": "2018-05-03",
+  "voucherNum": "记3-5",
+  "details": [
+    {
+      "remark": "支付李勇买酒货款",
+      "subject": "2202 应付账款",
+      "debit": "4,800.00",
+      "lender": ""
+    },
+    {
+      "remark": "支付李勇买酒货款",
+      "subject": "2202 应付账款",
+      "debit": "50,000.00",
+      "lender": ""
+    },
+    {
+      "remark": "支付李勇买酒货款",
+      "subject": "1002 银行存款",
+      "debit": "",
+      "lender": "4,800.00"
+    },
+    {
+      "remark": "支付李勇买酒货款",
+      "subject": "1002 银行存款",
+      "debit": "",
+      "lender": "50,000.00"
+    }
+  ],
+  "createUser": "夏礼珍",
+  "auditor": "未审核"
+}, {
+  "id": "4",
+  "createDate": "2018-05-03",
+  "voucherNum": "记3-4",
+  "details": [
+    {
+      "remark": "退还柴玲，朱海容，黄娟，夏礼珍购买一箱酒1788*4",
+      "subject": "5001 主营业务收入",
+      "debit": "7,152.00",
+      "lender": ""
+    },
+    {
+      "remark": "退还柴玲，朱海容，黄娟，夏礼珍购买一箱酒1788*4",
+      "subject": "1002 银行存款",
+      "debit": "",
+      "lender": "7,152.00"
+    }
+  ],
+  "createUser": "夏礼珍",
+  "auditor": "未审核"
+}, {
+  "id": "3",
+  "createDate": "2018-05-03",
+  "voucherNum": "记3-3",
+  "details": [
+    {
+      "remark": "购进酒240+1676",
+      "subject": "1405 库存商品",
+      "debit": "574,800.00",
+      "lender": ""
+    },
+    {
+      "remark": "购进酒240+1676",
+      "subject": "2202 应付账款",
+      "debit": "",
+      "lender": "574,800.00"
+    }
+  ],
+  "createUser": "夏礼珍",
+  "auditor": "未审核"
+}, {
+  "id": "2",
+  "createDate": "2018-05-03",
+  "voucherNum": "记3-2",
+  "details": [
+    {
+      "remark": "快递费24",
+      "subject": "560230 管理费用_快递费",
+      "debit": "24.00",
+      "lender": ""
+    },
+    {
+      "remark": "3台空调维修",
+      "subject": "560231 管理费用_维修费",
+      "debit": "1,700.00",
+      "lender": ""
+    },
+    {
+      "remark": "付款",
+      "subject": "1002 银行存款",
+      "debit": "",
+      "lender": "1,724.00"
+    }
+  ],
+  "createUser": "夏礼珍",
+  "auditor": "未审核"
+}
+]

@@ -11,7 +11,7 @@
       width="55">
     </el-table-column>
     <template v-for="item in table.columns">
-      <el-table-column v-if="item.type!='hidden'"
+      <el-table-column
         :label="item.name"
         :prop="item.alias"
        >
