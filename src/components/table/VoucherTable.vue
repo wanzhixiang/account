@@ -84,6 +84,8 @@ export default {
       var _this = this
       if (row.id === _this.enterId) {
         return 'hover_class'
+      } else {
+        return ''
       }
     },
     buildData () {
@@ -125,8 +127,11 @@ export default {
   }
 }
 </script>
-<style scoped>
-  .hover_class{
-    background-color: brown;
+<style>
+  .el-table .hover_class{
+    background-color: #66b1ff  !important;
+  }
+  .el-table--enable-row-hover .el-table__body tr:hover>td{
+    background-color: #66b1ff !important;
   }
 </style>
