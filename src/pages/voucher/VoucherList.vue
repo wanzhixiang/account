@@ -29,15 +29,15 @@
         <el-button type="danger" size="small" icon="el-icon-delete">删除</el-button>
       </el-row>
       <!--操作按钮区 end-->
-      <voucher-table ref="VoucherTable"></voucher-table>
+      <voucher-list-table ref="VoucherListTable"></voucher-list-table>
     </div>
 </template>
 
 <script>
-import VoucherTable from '../../components/table/VoucherTable'
+import VoucherListTable from '../../components/table/VoucherListTable'
 export default {
   name: 'VoucherList',
-  components: {VoucherTable},
+  components: {VoucherListTable},
   data () {
     return {
       currentDate: new Date(),
@@ -56,7 +56,7 @@ export default {
     },
     // 查询数据
     searchVoucher: function () {
-      console.log(this.$refs.VoucherTable.$data.multipleSelection)
+      console.log(this.$refs.VoucherListTable.$data.multipleSelection)
     }
   }
 }

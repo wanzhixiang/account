@@ -45,16 +45,16 @@ export default {
         icon: 'el-icon-menu',
         children: [
           {
+            path: '/add',
+            name: '新增凭证'
+          },
+          {
             path: '/list',
             name: '凭证清单'
           },
           {
             path: '/template',
             name: '凭证模板'
-          },
-          {
-            path: '/workplace',
-            name: '工作台'
           }
         ]
       },

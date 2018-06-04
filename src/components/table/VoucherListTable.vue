@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  name: 'VoucherTable',
+  name: 'VoucherListTable',
   data () {
     return {
       // 表格数据
@@ -132,6 +132,6 @@ export default {
     background-color: #66b1ff  !important;
   }
   .el-table--enable-row-hover .el-table__body tr:hover>td{
-    background-color: #66b1ff !important;
+    background: none;
   }
 </style>
