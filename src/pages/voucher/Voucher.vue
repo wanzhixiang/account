@@ -1,8 +1,26 @@
 <template>
   <div>
-    <el-row>
-      <el-col :span="8">凭证字</el-col>
-      <el-col :span="8"  class="voucherTitle"><span>记账凭证</span></el-col>
+    <el-row  style="text-align: center">
+      <span class="voucherTitle">记账凭证</span>
+    </el-row>
+    <el-row style="height: 40px">
+      <el-col :span="8" style="display: flex">
+        <input style="width: 60px"/>
+        <span>字第</span>
+        <input style="width: 60px"/>号
+        <div style="margin-left: 30px">
+          <span>日期</span>
+          <el-date-picker
+            v-model="createTime"
+            type="date"
+            size="mini"
+          >
+          </el-date-picker>
+        </div>
+      </el-col>
+      <el-col :span="8" style="text-align: center">
+        <span>2018年第5期</span>
+      </el-col>
       <el-col :span="8" style="text-align: right">附单据<input style="width: 30px" />张</el-col>
     </el-row>
     <voucher-edit-table></voucher-edit-table>
@@ -15,14 +33,7 @@ export default {
   components: {VoucherEditTable},
   data () {
     return {
-      tableData: [
-        {
-          remark: '',
-          subject: '',
-          debit: '',
-          lender: ''
-        }
-      ]
+      createTime: new Date()
     }
   },
   methods: {
