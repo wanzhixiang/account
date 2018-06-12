@@ -44,14 +44,14 @@
         <tr>
           <td><input type="text" v-model="item.remark"/></td>
           <td><input type="text" v-model="item.subject"/></td>
-          <td><input type="text" v-model="item.debit" class="money_input"  @keyup="setMoney(item)"/></td>
-          <td><input type="text" v-model="item.lender" class="money_input" @keyup="setMoney(item)"/></td>
+          <td><input type="text" v-model="item.debit" class="money_input" @blur="debit2money(item)"/></td>
+          <td><input type="text" v-model="item.lender" class="money_input" @blur="lender2money(item)"/></td>
         </tr>
       </template>
       <tr>
         <td colspan="2" style="text-align: left;padding-left: 10px">合计:{{totalComputer}}</td>
-        <td class="money_input">{{debitComputerTotal}}</td>
-        <td class="money_input">{{lenderComputerTotal}}</td>
+        <td class="money_input">{{debitTotal}}</td>
+        <td class="money_input">{{lenderTotal}}</td>
       </tr>
       </tbody>
     </table>
@@ -63,8 +63,8 @@ export default {
   name: 'VoucherEditTable',
   data () {
     return {
-      debitTotal: 0,
-      lenderTotal: 0,
+      debitTotal: '',
+      lenderTotal: '',
       tableData: [
         {
           remark: '',
@@ -94,35 +94,32 @@ export default {
     }
   },
   computed: {
-    debitComputerTotal: function () {
-      let _debitTotal = ''
-      this.tableData.map((item) => {
-        _debitTotal = Number(_debitTotal) + Number(item.debit)
-      })
-      this.debitTotal = _debitTotal
-      return _debitTotal === 0 ? '' : _debitTotal
-    },
-    lenderComputerTotal: function () {
-      let _lenderTotal = ''
-      this.tableData.map((item) => {
-        _lenderTotal = Number(_lenderTotal) + Number(item.lender)
-      })
-      this.lenderTotal = _lenderTotal
-      return _lenderTotal === 0 ? '' : _lenderTotal
-    },
     totalComputer: function () {
-      if (this.debitTotal === this.lenderTotal && this.debitTotal !== 0) {
-        return this.moneyToUppercase(this.debitTotal)
+      if (this.debitTotal === this.lenderTotal && Number(this.debitTotal) !== 0) {
+        return this.moneyToUppercase(this.debitTotal / 100)
       }
       return ''
     }
   },
   methods: {
-    setMoney: function (data) {
+    debit2money: function (data) {
       if (data.debit !== '') {
-        data.debit = data.debit.replace(/[^\-?\d.]/g, '')
-      } else if (data.lender !== '') {
-        data.lender = data.lender.replace(/[^\-?\d.]/g, '')
+        data.debit = Number(data.debit.replace(/[^\-?\d.]/g, '')).toFixed(2) * 100
+        this.lenderTotal = Number(this.lenderTotal) - Number(data.lender)
+        this.debitTotal = Number(this.debitTotal) + Number(data.debit)
+        data.lender = ''
+        this.lenderTotal = this.lenderTotal === 0 ? '' : this.lenderTotal
+        this.debitTotal = this.debitTotal === 0 ? '' : this.debitTotal
+      }
+    },
+    lender2money: function (data) {
+      if (data.lender !== '') {
+        data.lender = Number(data.lender.replace(/[^\-?\d.]/g, '')).toFixed(2) * 100
+        this.lenderTotal = Number(this.lenderTotal) + Number(data.lender)
+        this.debitTotal = Number(this.debitTotal) - Number(data.debit)
+        data.debit = ''
+        this.lenderTotal = this.lenderTotal === 0 ? '' : this.lenderTotal
+        this.debitTotal = this.debitTotal === 0 ? '' : this.debitTotal
       }
     },
     moneyToUppercase: function (num) {
@@ -199,8 +196,12 @@ export default {
   }
   .money_input{
     background: url(../../assets/money_rp.png) repeat-y;
-    text-align: right;
     letter-spacing:10px;
+    text-align: right;
+  }
+  .money_input:focus{
+    background:none;
+    letter-spacing:0px;
   }
   .money_unit span{
     display: inline;

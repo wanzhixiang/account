@@ -1,10 +1,10 @@
 <template>
   <el-container>
-    <Aside-Menu></Aside-Menu>
-    <el-container style="left: 202px; right: 0;position: absolute;top: 0;bottom: 0;">
-      <el-header>
-        <nav-menu></nav-menu>
-      </el-header>
+    <el-header style="text-align: right; font-size: 12px">
+      <nav-menu></nav-menu>
+    </el-header>
+    <el-container class="main_container">
+      <Aside-Menu></Aside-Menu>
       <el-main>
         <transition name="fade" mode="out-in">
           <!-- <router-view :key="key"></router-view> -->
@@ -33,10 +33,18 @@ export default {
 }
 </script>
 <style>
-  .el-header {
-    color: #333;
-    text-color: #fff;
-    active-text-color: #ffd04b;
-    line-height: 60px;
+  body{
+    margin: 0;
+    padding: 0;
+  }
+  .main_container{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 60px;
+    bottom: 0px;
+  }
+  .el-header{
+    padding: 0px;
   }
 </style>

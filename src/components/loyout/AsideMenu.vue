@@ -1,12 +1,11 @@
 <template>
-  <el-aside width="200px">
-    <div class="logo">
-      <img src="https://img.alicdn.com/tfs/TB13UQpnYGYBuNjy0FoXXciBFXa-242-134.png" width="40">
-      <span class="site-name">小胖子</span>
-    </div>
+  <el-aside width="202px">
     <el-menu
       style="border: none"
       :default-active="$route.path"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
     >
       <template v-for="item in asideMenuConfig">
         <router-link v-if="!item.children" :to="item.path" :key="item.name">
@@ -15,7 +14,6 @@
             <span v-if="item.name" slot="title">{{item.name}}</span>
           </el-menu-item>
         </router-link>
-
         <el-submenu v-else :index="item.name || item.path" :key="item.name">
           <template slot="title">
             <i v-if="item && item.icon" :class="item.icon"></i>
@@ -83,25 +81,8 @@ export default {
   a {
     text-decoration:none;
   }
-  .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 64px;
-    line-height: 64px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 600;
-    overflow: hidden;
-  }
-  .site-name {
-    margin-left: 10px;
-  }
   .el-aside{
-    height: 100%;
-    position: fixed;
-    z-index: 1001;
-    overflow: hidden;
     border-right: solid 1px #e6e6e6;
+    box-shadow: 2px 2px 5px #888;
   }
 </style>

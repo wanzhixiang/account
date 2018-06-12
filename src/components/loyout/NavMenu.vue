@@ -1,19 +1,37 @@
 <template>
-  <el-menu
-    :default-active="activeIndex"
-    class="el-menu-wzx"
-    mode="horizontal"
-    @select="handleSelect">
-    <el-menu-item index="1">处理中心</el-menu-item>
-    <el-submenu index="2">
-      <template slot="title">我的工作台</template>
-      <el-menu-item index="2-1">选项1</el-menu-item>
-      <el-menu-item index="2-2">选项2</el-menu-item>
-      <el-menu-item index="2-3">选项3</el-menu-item>
-    </el-submenu>
-    <el-menu-item index="3" disabled>消息中心</el-menu-item>
-    <el-menu-item index="4">订单管理</el-menu-item>
-  </el-menu>
+  <el-row>
+    <el-col :span="10">
+      <div class="logo" index="0">
+        <img src="https://img.alicdn.com/tfs/TB13UQpnYGYBuNjy0FoXXciBFXa-242-134.png" width="40">
+        <span class="site-name">成都小胖子会计有限责任公司</span>
+      </div>
+    </el-col>
+    <el-col :span="8">
+      <el-menu
+        :default-active="activeIndex"
+        class="el-menu-demo"
+        mode="horizontal"
+        @select="handleSelect"
+      >
+        <el-menu-item index="1">处理中心</el-menu-item>
+        <el-submenu index="2">
+          <template slot="title">我的工作台</template>
+          <el-menu-item index="2-1">选项1</el-menu-item>
+          <el-menu-item index="2-2">选项2</el-menu-item>
+          <el-menu-item index="2-3">选项3</el-menu-item>
+          <el-submenu index="2-4">
+            <template slot="title">选项4</template>
+            <el-menu-item index="2-4-1">选项1</el-menu-item>
+            <el-menu-item index="2-4-2">选项2</el-menu-item>
+            <el-menu-item index="2-4-3">选项3</el-menu-item>
+          </el-submenu>
+        </el-submenu>
+        <el-menu-item index="3" disabled>消息中心</el-menu-item>
+        <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+      </el-menu>
+    </el-col>
+    <el-col :span="6"></el-col>
+  </el-row>
 </template>
 
 <script>
@@ -34,5 +52,18 @@ export default {
 <style scoped>
   el-menu-wzx {
     text-decoration:none;
+  }
+  .logo {
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+  }
+  .logo:hover{
+    background: none;
+  }
+  .site-name {
+    margin-left: 10px;
   }
 </style>
