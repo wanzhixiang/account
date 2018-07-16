@@ -1,5 +1,5 @@
 <template>
-  <el-row>
+  <el-row class="wzx-header">
     <el-col :span="10">
       <div class="logo" index="0">
         <img src="https://img.alicdn.com/tfs/TB13UQpnYGYBuNjy0FoXXciBFXa-242-134.png" width="40">
@@ -9,7 +9,6 @@
     <el-col :span="8">
       <el-menu
         :default-active="activeIndex"
-        class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
       >
@@ -26,7 +25,7 @@
             <el-menu-item index="2-4-3">选项3</el-menu-item>
           </el-submenu>
         </el-submenu>
-        <el-menu-item index="3" disabled>消息中心</el-menu-item>
+        <el-menu-item index="3">消息中心</el-menu-item>
         <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
       </el-menu>
     </el-col>
@@ -65,5 +64,11 @@ export default {
   }
   .site-name {
     margin-left: 10px;
+  }
+  .el-menu--horizontal{
+    border-bottom: none;
+  }
+  .wzx-header{
+    border-bottom: solid 1px #e6e6e6;
   }
 </style>

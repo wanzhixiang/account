@@ -3,9 +3,9 @@
     <table id="voucherTable" cellpadding="0" cellspacing="0">
       <thead>
         <tr>
-          <th width="36%">摘要</th>
-          <th width="36%">会计科目</th>
-          <th width="13.1%">
+          <th>摘要</th>
+          <th>会计科目</th>
+          <th width="220px">
             <div>借方金额</div>
             <div class="money_unit">
               <span>亿</span>
@@ -21,7 +21,7 @@
               <span>分</span>
             </div>
           </th>
-          <th width="13.1%">
+          <th width="220px">
             <div>贷方金额</div>
             <div class="money_unit">
               <span>亿</span>
@@ -44,8 +44,12 @@
         <tr>
           <td><input type="text" v-model="item.remark"/></td>
           <td><input type="text" v-model="item.subject"/></td>
-          <td><input type="text" v-model="item.debit" class="money_input" @blur="debit2money(item)"/></td>
-          <td><input type="text" v-model="item.lender" class="money_input" @blur="lender2money(item)"/></td>
+          <td>
+            <input type="text" class="money_input" v-model.number="item.debit" @blur="debit2money(item)" @focus="money2debit(item)"/>
+          </td>
+          <td>
+            <input type="text" class="money_input" v-model.number="item.lender" @blur="lender2money(item)" @focus="money2lender(item)"/>
+          </td>
         </tr>
       </template>
       <tr>
@@ -96,7 +100,7 @@ export default {
   computed: {
     totalComputer: function () {
       if (this.debitTotal === this.lenderTotal && Number(this.debitTotal) !== 0) {
-        return this.moneyToUppercase(this.debitTotal / 100)
+        return this.moneyToUppercase(this.debitTotal)
       }
       return ''
     }
@@ -104,22 +108,36 @@ export default {
   methods: {
     debit2money: function (data) {
       if (data.debit !== '') {
-        data.debit = Number(data.debit.replace(/[^\-?\d.]/g, '')).toFixed(2) * 100
-        this.lenderTotal = Number(this.lenderTotal) - Number(data.lender)
-        this.debitTotal = Number(this.debitTotal) + Number(data.debit)
+        data.debit = Math.round(Number(data.debit.toString().replace(/[^\-?\d.]/g, '')).toFixed(2) * 100)
         data.lender = ''
-        this.lenderTotal = this.lenderTotal === 0 ? '' : this.lenderTotal
-        this.debitTotal = this.debitTotal === 0 ? '' : this.debitTotal
+        this.debitTotal = ''
+        this.lenderTotal = ''
+        for (let item of this.tableData) {
+          this.debitTotal = Number(this.debitTotal) + Number(item.debit)
+          this.lenderTotal = Number(this.lenderTotal) + Number(item.lender)
+        }
       }
     },
     lender2money: function (data) {
       if (data.lender !== '') {
-        data.lender = Number(data.lender.replace(/[^\-?\d.]/g, '')).toFixed(2) * 100
-        this.lenderTotal = Number(this.lenderTotal) + Number(data.lender)
-        this.debitTotal = Number(this.debitTotal) - Number(data.debit)
+        data.lender = Math.round(Number(data.lender.toString().replace(/[^\-?\d.]/g, '')).toFixed(2) * 100)
         data.debit = ''
-        this.lenderTotal = this.lenderTotal === 0 ? '' : this.lenderTotal
-        this.debitTotal = this.debitTotal === 0 ? '' : this.debitTotal
+        this.debitTotal = ''
+        this.lenderTotal = ''
+        for (let item of this.tableData) {
+          this.debitTotal = Number(this.debitTotal) + Number(item.debit)
+          this.lenderTotal = Number(this.lenderTotal) + Number(item.lender)
+        }
+      }
+    },
+    money2debit: function (data) {
+      if (data.debit !== '' && data.debit !== 0) {
+        data.debit = data.debit / 100
+      }
+    },
+    money2lender: function (data) {
+      if (data.lender !== '' && data.lender !== 0) {
+        data.lender = data.lender / 100
       }
     },
     moneyToUppercase: function (num) {

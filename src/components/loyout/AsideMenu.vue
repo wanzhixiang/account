@@ -82,7 +82,8 @@ export default {
     text-decoration:none;
   }
   .el-aside{
-    border-right: solid 1px #e6e6e6;
-    box-shadow: 2px 2px 5px #888;
+    box-shadow: 1px 2px 5px #888;
+    overflow: hidden;
+    background-color: #545c64;
   }
 </style>

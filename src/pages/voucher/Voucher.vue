@@ -4,11 +4,11 @@
       <span class="voucherTitle">记账凭证</span>
     </el-row>
     <el-row style="height: 30px">
-      <el-col :span="8" style="display: flex">
-        <input style="width: 60px"/>
+      <el-col :span="9" style="display: flex">
+        <input style="width: 30px" />
         <span>字第</span>
-        <input style="width: 60px"/>号
-        <div style="margin-left: 30px">
+        <input style="width: 30px" />号
+        <div style="margin-left: 20px">
           <span>日期</span>
           <el-date-picker
             v-model="createTime"
@@ -18,7 +18,7 @@
           </el-date-picker>
         </div>
       </el-col>
-      <el-col :span="8" style="text-align: center">
+      <el-col :span="7" style="text-align: center">
         <span>2018年第5期</span>
       </el-col>
       <el-col :span="8" style="text-align: right">附单据<input style="width: 30px" />张</el-col>
