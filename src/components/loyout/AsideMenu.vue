@@ -35,44 +35,8 @@
 <script>
 export default {
   name: 'AsideMenu',
-  data: function () {
-    return {
-      asideMenuConfig: [{
-        path: '/voucher',
-        name: '凭证管理',
-        icon: 'el-icon-menu',
-        children: [
-          {
-            path: '/add',
-            name: '新增凭证'
-          },
-          {
-            path: '/list',
-            name: '凭证清单'
-          },
-          {
-            path: '/template',
-            name: '凭证模板'
-          }
-        ]
-      },
-      {
-        path: '/setting',
-        name: '设置',
-        icon: 'el-icon-date',
-        children: [
-          {
-            path: '/subject',
-            name: '科目'
-          },
-          {
-            path: '/fixed',
-            name: '凭证字'
-          }
-        ]
-      }
-      ]
-    }
+  props: {
+    asideMenuConfig: {}
   }
 }
 </script>

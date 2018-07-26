@@ -4,7 +4,7 @@
       <nav-menu></nav-menu>
     </el-header>
     <el-container class="main_container">
-      <Aside-Menu></Aside-Menu>
+      <Aside-Menu v-bind:asideMenuConfig="asideMenuConfig"></Aside-Menu>
       <el-main>
         <transition name="fade" mode="out-in">
           <!-- <router-view :key="key"></router-view> -->
@@ -20,14 +20,26 @@ import NavMenu from './components/loyout/NavMenu'
 
 export default {
   components: {AsideMenu, NavMenu},
+  mounted: function () {
+    this.buildData()
+  },
   data () {
-    const item = {
-      date: '2016-05-02',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄'
-    }
     return {
-      tableData: Array(20).fill(item)
+      asideMenuConfig: []
+    }
+  },
+  methods: {
+    buildData: function () {
+      var _this = this
+      // 将tableData6构建成需要的数据
+      this.$ajax.get('/static/api/menu.json')
+        .then(function (response) {
+          const result = response.data
+          _this.asideMenuConfig = result.data
+        })
+        .catch(function (response) {
+          console.log(response)
+        })
     }
   }
 }

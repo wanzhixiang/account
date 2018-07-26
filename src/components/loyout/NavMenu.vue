@@ -3,7 +3,7 @@
     <el-col :span="10">
       <div class="logo" index="0">
         <img src="https://img.alicdn.com/tfs/TB13UQpnYGYBuNjy0FoXXciBFXa-242-134.png" width="40">
-        <span class="site-name">成都小胖子会计有限责任公司</span>
+        <span class="site-name">{{companyName}}</span>
       </div>
     </el-col>
     <el-col :span="8">
@@ -26,7 +26,7 @@
           </el-submenu>
         </el-submenu>
         <el-menu-item index="3">消息中心</el-menu-item>
-        <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+        <el-menu-item index="4"><a href="https://www.ele.me">订单管理</a></el-menu-item>
       </el-menu>
     </el-col>
     <el-col :span="6"></el-col>
@@ -37,6 +37,7 @@
 export default {
   data () {
     return {
+      companyName: '成都小胖子会计有限责任公司',
       activeIndex: '1'
     }
   },
@@ -69,6 +70,7 @@ export default {
     border-bottom: none;
   }
   .wzx-header{
-    border-bottom: solid 1px #e6e6e6;
+    box-shadow: 1px 1px 1px #888;
+    z-index: 99;
   }
 </style>

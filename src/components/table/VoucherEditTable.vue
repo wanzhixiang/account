@@ -65,42 +65,19 @@
 <script>
 export default {
   name: 'VoucherEditTable',
+  props: {
+    tableData: {}
+  },
   data () {
     return {
       debitTotal: '',
-      lenderTotal: '',
-      tableData: [
-        {
-          remark: '',
-          subject: '',
-          debit: '',
-          lender: ''
-        },
-        {
-          remark: '',
-          subject: '',
-          debit: '',
-          lender: ''
-        },
-        {
-          remark: '',
-          subject: '',
-          debit: '',
-          lender: ''
-        },
-        {
-          remark: '',
-          subject: '',
-          debit: '',
-          lender: ''
-        }
-      ]
+      lenderTotal: ''
     }
   },
   computed: {
     totalComputer: function () {
       if (this.debitTotal === this.lenderTotal && Number(this.debitTotal) !== 0) {
-        return this.moneyToUppercase(this.debitTotal)
+        return this.moneyToUppercase(this.debitTotal / 100)
       }
       return ''
     }
@@ -110,24 +87,28 @@ export default {
       if (data.debit !== '') {
         data.debit = Math.round(Number(data.debit.toString().replace(/[^\-?\d.]/g, '')).toFixed(2) * 100)
         data.lender = ''
-        this.debitTotal = ''
-        this.lenderTotal = ''
-        for (let item of this.tableData) {
-          this.debitTotal = Number(this.debitTotal) + Number(item.debit)
-          this.lenderTotal = Number(this.lenderTotal) + Number(item.lender)
-        }
+        this.setTotal()
       }
     },
     lender2money: function (data) {
       if (data.lender !== '') {
         data.lender = Math.round(Number(data.lender.toString().replace(/[^\-?\d.]/g, '')).toFixed(2) * 100)
         data.debit = ''
+        this.setTotal()
+      }
+    },
+    setTotal: function () {
+      this.debitTotal = ''
+      this.lenderTotal = ''
+      for (let item of this.tableData) {
+        this.debitTotal = Number(this.debitTotal) + Number(item.debit)
+        this.lenderTotal = Number(this.lenderTotal) + Number(item.lender)
+      }
+      if (Number(this.debitTotal) === 0) {
         this.debitTotal = ''
+      }
+      if (Number(this.lenderTotal) === 0) {
         this.lenderTotal = ''
-        for (let item of this.tableData) {
-          this.debitTotal = Number(this.debitTotal) + Number(item.debit)
-          this.lenderTotal = Number(this.lenderTotal) + Number(item.lender)
-        }
       }
     },
     money2debit: function (data) {
